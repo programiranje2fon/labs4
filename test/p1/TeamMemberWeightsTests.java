@@ -79,7 +79,7 @@ public class TeamMemberWeightsTests {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu tezinu 40.0 koja je premala NE ispisuje se rec GRESKA na ekranu", ispis.trim().equalsIgnoreCase("GRESKA"));
+			assertTrue("Za unetu tezinu 40.0 koja je premala NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
 			assertEquals("Ipak je povecan counter iako nije trebalo jer je tezina premala", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
@@ -113,7 +113,7 @@ public class TeamMemberWeightsTests {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec GRESKA na ekranu", ispis.trim().equalsIgnoreCase("GRESKA"));
+			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
 			assertEquals("Ipak je povecan counter iako nije trebalo jer je niz pun", 5, instance.counter);
 			assertNotEquals("Ipak je uneta tezina iako je niz pun", 99.9, instance.weights[4], 0.001);
 		} catch (Exception e) {
@@ -209,7 +209,7 @@ public class TeamMemberWeightsTests {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			String s = "Laka:1" + System.lineSeparator() + "Srednja:1" + System.lineSeparator() + "Teska:2" + System.lineSeparator();
+			String s = "Lightweight:1" + System.lineSeparator() + "Middleweight:1" + System.lineSeparator() + "Heavyweight:2" + System.lineSeparator();
 
 			assertEquals("Za unete tezine 110.5 i 82.3 NE ispisuju se te tezine na ekranu", s.trim(), ispis.trim());
 		} catch (Exception e) {

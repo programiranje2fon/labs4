@@ -77,7 +77,7 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu visinu 159 koja je premala NE ispisuje se rec GRESKA na ekranu", ispis.trim().equalsIgnoreCase("GRESKA"));
+			assertTrue("Za unetu visinu 159 koja je premala NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
 			assertEquals("Ipak je povecan counter iako nije trebalo jer je visina premala", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
@@ -105,7 +105,7 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu visinu 251 koja je prevelika NE ispisuje se rec GRESKA na ekranu", ispis.trim().equalsIgnoreCase("GRESKA"));
+			assertTrue("Za unetu visinu 251 koja je prevelika NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
 			assertEquals("Ipak je povecan counter iako nije trebalo jer je visina prevelika", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
@@ -139,7 +139,7 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec GRESKA na ekranu", ispis.trim().equalsIgnoreCase("GRESKA"));
+			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
 			assertEquals("Ipak je povecan counter iako nije trebalo jer je niz pun", 5, instance.counter);
 			assertNotEquals("Ipak je uneta tezina iako je niz pun", 199, instance.heights[4]);
 		} catch (Exception e) {
