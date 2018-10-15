@@ -45,7 +45,7 @@ public class TeamMemberHeightsTest {
 	}
 	
 	@Test (timeout = 2000)
-	public void testInsert() {
+	public void method_insert() {
 		instance.insert(180);
 		instance.insert(169);
 		
@@ -149,7 +149,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void testGetMeanHeight() {
+	public void method_getMeanHeight() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);
@@ -158,7 +158,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void testGetMaxDifference() {
+	public void method_getMaxDifference() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);
