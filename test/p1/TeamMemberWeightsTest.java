@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import p1.TeamMemberWeights;
 
-public class TeamMemberWeightsTests {
+public class TeamMemberWeightsTest {
 	
 	TeamMemberWeights instance;
 
