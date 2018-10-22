@@ -29,11 +29,6 @@ class TeamMemberWeights {
 	}
 	
 	void print() {
-		// Explain forEach loop, but also that it is not appropriate here 
-		// since it should run up to the current value of the counter, 
-	    // the rest are empty elements.
-		// for(double weight: weights)
-		//	   System.out.println(weight);
 		for(int i=0; i<counter; i++)
 			System.out.println(weights[i]);
 	}
