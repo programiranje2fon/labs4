@@ -26,7 +26,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void constructor_TeamMemberHeights() {
+	public void konstruktor_TeamMemberHeights() {
 		assertEquals("Kad se pozove sa brojem 5, ne inicijalizuje niz na 5 elemenata", 5, instance.heights.length);
 		
 		for(int visina: instance.heights)
@@ -35,7 +35,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void constructor_TeamMemberHeights_NegativeParameter() {
+	public void konstruktor_TeamMemberHeights_NegativeParameter() {
 		instance = new TeamMemberHeights(-10);
 		
 		assertEquals("Kad se pozove sa brojem -10, ne inicijalizuje niz na 20 elemenata", 20, instance.heights.length);
@@ -45,7 +45,7 @@ public class TeamMemberHeightsTest {
 	}
 	
 	@Test (timeout = 2000)
-	public void method_insert() {
+	public void metoda_insert() {
 		instance.insert(180);
 		instance.insert(169);
 		
@@ -58,7 +58,7 @@ public class TeamMemberHeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_insertTooShort() {
+	public void metoda_insertTooShort() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -86,7 +86,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_insertTooTall() {
+	public void metoda_insertTooTall() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -114,7 +114,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_insertArrayFull() {
+	public void metoda_insertArrayFull() {
 		instance.insert(180);
 		instance.insert(190);
 		instance.insert(210);
@@ -149,7 +149,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void method_getMeanHeight() {
+	public void metoda_getMeanHeight() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);
@@ -158,7 +158,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void method_getMaxDifference() {
+	public void metoda_getMaxDifference() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);

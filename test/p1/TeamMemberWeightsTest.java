@@ -26,7 +26,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void constructor_TeamMemberWeights() {
+	public void konstruktor_TeamMemberWeights() {
 		instance = new TeamMemberWeights();
 		
 		assertEquals("Kapacitet niza nije 20", 20, instance.weights.length);
@@ -36,7 +36,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void constructor_TeamMemberWeightsInt() {
+	public void konstruktor_TeamMemberWeightsInt() {
 		instance = new TeamMemberWeights(5);
 		
 		assertEquals("Ako se unese kapacitet 5, kapacitet niza nije 5", 5, instance.weights.length);
@@ -46,7 +46,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_insert() {
+	public void metoda_insert() {
 		instance.insert(100.5);
 		instance.insert(52.3);
 		
@@ -60,7 +60,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_insertTooLight() {
+	public void metoda_insertTooLight() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -88,7 +88,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_insertArrayFull() {
+	public void metoda_insertArrayFull() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(110.5);
@@ -123,7 +123,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_print() {
+	public void metoda_print() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 
@@ -155,7 +155,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_findLightest() {
+	public void metoda_findLightest() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -165,7 +165,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_findWeightTrue() {
+	public void metoda_findWeightTrue() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -175,7 +175,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_findWeightFalse() {
+	public void metoda_findWeightFalse() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -185,7 +185,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_printPercents() {
+	public void metoda_printPercents() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
