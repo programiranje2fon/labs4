@@ -59,6 +59,16 @@ public class TestUtil {
 		}
 	}
 	
+	public static boolean doesMethodExist(Class<?> c, String methodName, Class<?>[] parameterTypes) {
+		try {
+			c.getDeclaredMethod(methodName, parameterTypes);
+			
+			return true;
+		} catch (NoSuchMethodException e) {
+			return false;
+		}
+	}
+	
 	public static boolean hasFieldModifier(Class<?> c, String fieldName, int modifier) {
 		try {
 			Field field = c.getDeclaredField(fieldName);

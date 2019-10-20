@@ -13,7 +13,7 @@ import p2.TeamMemberHeights;
 
 public class TeamMemberHeightsTest {
 	
-	TeamMemberHeights instance;
+	private TeamMemberHeights instance;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,39 +26,39 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void konstruktor_TeamMemberHeights() {
-		assertEquals("Kad se pozove sa brojem 5, ne inicijalizuje niz na 5 elemenata", 5, instance.heights.length);
+	public void constructor_TeamMemberHeights() {
+		assertEquals("Array length is not correct", 5, instance.heights.length);
 		
 		for(int visina: instance.heights)
-			assertEquals("Element niza nije inicijalizovan na 0", 0, visina);
+			assertEquals("Array element is not initialized to 0", 0, visina);
 
 	}
 
 	@Test (timeout = 2000)
-	public void konstruktor_TeamMemberHeights_NegativeParameter() {
+	public void constructor_TeamMemberHeights_NegativeParameter() {
 		instance = new TeamMemberHeights(-10);
 		
-		assertEquals("Kad se pozove sa brojem -10, ne inicijalizuje niz na 20 elemenata", 20, instance.heights.length);
+		assertEquals("If argument value is 20, the array length is not 20", 20, instance.heights.length);
 		
 		for(int visina: instance.heights)
-			assertEquals("Element niza nije inicijalizovan na 0", 0, visina);
+			assertEquals("Array element is not initialized to 0", 0, visina);
 	}
 	
 	@Test (timeout = 2000)
-	public void metoda_insert() {
+	public void method_insert() {
 		instance.insert(180);
 		instance.insert(169);
 		
-		assertEquals("Ako se unesu dva elementa, metoda u niz ne ubaci oba kako treba, counter nije 2", 2, instance.counter);
-		assertEquals("Unet je prvi element 180, ali nije postavljen na prvo mesto u nizu", 180, instance.heights[0]);
-		assertEquals("Unet je drugi element 169, ali nije postavljen na drugo mesto u nizu", 169, instance.heights[1]);
-		assertEquals("Unet je i treci element, a trebalo je da ostane 0", 0, instance.heights[2]);
-		assertEquals("Unet je i cetvrti element, a trebalo je da ostane 0", 0, instance.heights[3]);
-		assertEquals("Unet je i peti element, a trebalo je da ostane 0", 0, instance.heights[4]);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, counter nije 2", 2, instance.counter);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, the number 180 is not stored as the first element", 180, instance.heights[0]);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, the number 169 is not stored as the second element", 169, instance.heights[1]);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, the third element should be -1", 0, instance.heights[2]);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, the fourth element should be -1", 0, instance.heights[3]);
+		assertEquals("If the method is called two times, with the arguments 180 and 169, the fifth element should be -1", 0, instance.heights[4]);
 	}
 	
 	@Test(timeout = 2000)
-	public void metoda_insertTooShort() {
+	public void method_insert_tooShort() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -77,8 +77,8 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu visinu 159 koja je premala NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
-			assertEquals("Ipak je povecan counter iako nije trebalo jer je visina premala", 0, instance.counter);
+			assertTrue("For the argument 159, which is bellow the threshold, the method does not output the text 'ERROR'", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertEquals("For the argument 159, the counter is increased, although the value is bellow the threshold", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_insertTooTall() {
+	public void method_insert_tooTall() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -105,8 +105,8 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu visinu 251 koja je prevelika NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
-			assertEquals("Ipak je povecan counter iako nije trebalo jer je visina prevelika", 0, instance.counter);
+			assertTrue("For the argument 251, which is above the threshold, the method does not output the text 'ERROR'", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertEquals("For the argument 251, the counter is increased, although the value is above the threshold", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -114,7 +114,7 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_insertArrayFull() {
+	public void method_insert_arrayFull() {
 		instance.insert(180);
 		instance.insert(190);
 		instance.insert(210);
@@ -139,9 +139,9 @@ public class TeamMemberHeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
-			assertEquals("Ipak je povecan counter iako nije trebalo jer je niz pun", 5, instance.counter);
-			assertNotEquals("Ipak je uneta tezina iako je niz pun", 199, instance.heights[4]);
+			assertTrue("When the array is full and a new element is added, the method should print ERROR to the console", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertEquals("When the array is full and a new element is added, the counter is increased, but should not have been", 5, instance.counter);
+			assertNotEquals("When the array is full and a new element is added, it is added as the last element, but should not have been", 199, instance.heights[4]);
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -149,22 +149,22 @@ public class TeamMemberHeightsTest {
 	}
 
 	@Test (timeout = 2000)
-	public void metoda_getMeanHeight() {
+	public void method_getMeanHeight() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);
 		
-		assertEquals("Za visine 180, 169 i 190, prosek bi trebalo da bude 179", 179, instance.getMeanHeight());
+		assertEquals("When three elements are added to the array, 180, 169 and 190, the average should be 179", 179, instance.getMeanHeight());
 	}
 
 	@Test (timeout = 2000)
-	public void metoda_getMaxDifference() {
+	public void method_getMaxDifference() {
 		instance.insert(180);
 		instance.insert(169);
 		instance.insert(190);
 		instance.insert(160);
 
-		assertEquals("Za visine 180, 169, 190 i 160, razlika izmedju najviseg (190) i najnizeg (160) bi trebalo da bude 30 cm", 30, instance.getMaxDifference());
+		assertEquals("When three elements are added to the array, 180, 169, 190 and 160, the difference between the highest (190) and the lowest (160) height should be 30 cm", 30, instance.getMaxDifference());
 	}
 
 }

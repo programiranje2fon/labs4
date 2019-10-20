@@ -13,7 +13,7 @@ import p1.TeamMemberWeights;
 
 public class TeamMemberWeightsTest {
 	
-	TeamMemberWeights instance;
+	private TeamMemberWeights instance;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,23 +26,23 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void konstruktor_TeamMemberWeights() {
+	public void constructor_TeamMemberWeights() {
 		instance = new TeamMemberWeights();
 		
-		assertEquals("Kapacitet niza nije 20", 20, instance.weights.length);
+		assertEquals("Array length is not correct", 20, instance.weights.length);
 		
 		for(double tezina: instance.weights)
-			assertEquals("Element niza nije inicijalizovan na -1", -1, tezina, 0.001);
+			assertEquals("Array element is not initialized to -1", -1, tezina, 0.001);
 	}
 
 	@Test(timeout = 2000)
-	public void konstruktor_TeamMemberWeightsInt() {
+	public void constructor_TeamMemberWeightsInt() {
 		instance = new TeamMemberWeights(5);
 		
-		assertEquals("Ako se unese kapacitet 5, kapacitet niza nije 5", 5, instance.weights.length);
+		assertEquals("If argument value is 5, the array length is not 5", 5, instance.weights.length);
 		
 		for(double tezina: instance.weights)
-			assertEquals("Element niza nije inicijalizovan na -1", -1, tezina, 0.001);
+			assertEquals("Array element is not initialized to -1", -1, tezina, 0.001);
 	}
 
 	@Test(timeout = 2000)
@@ -50,17 +50,16 @@ public class TeamMemberWeightsTest {
 		instance.insert(100.5);
 		instance.insert(52.3);
 		
-		assertEquals("Ako se unesu dva elementa, metoda u niz ne ubaci oba kako treba, counter nije 2", 2, instance.counter);
-		assertEquals("Unet je prvi element 100.5, ali nije postavljen na prvo mesto u nizu", 100.5, instance.weights[0], 0.001);
-		assertEquals("Unet je drugi element 52.3, ali nije postavljen na drugo mesto u nizu", 52.3, instance.weights[1], 0.001);
-		assertEquals("Unet je i treci element, a trebalo je da ostane -1", -1, instance.weights[2], 0.001);
-		assertEquals("Unet je i cetvrti element, a trebalo je da ostane -1", -1, instance.weights[3], 0.001);
-		assertEquals("Unet je i peti element, a trebalo je da ostane -1", -1, instance.weights[4], 0.001);
-
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the counter is not 2", 2, instance.counter);
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the number 100.5 is not stored as a first element", 100.5, instance.weights[0], 0.001);
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the number 52.3 is not stored as a second element", 52.3, instance.weights[1], 0.001);
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the third element should be -1", -1, instance.weights[2], 0.001);
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the fourth element should be -1", -1, instance.weights[3], 0.001);
+		assertEquals("If the method is called two times, with the arguments 100.5 and 52.3, the fifth element should be -1", -1, instance.weights[4], 0.001);
 	}
 	
 	@Test(timeout = 2000)
-	public void metoda_insertTooLight() {
+	public void method_insertTooLight() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -79,8 +78,8 @@ public class TeamMemberWeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za unetu tezinu 40.0 koja je premala NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
-			assertEquals("Ipak je povecan counter iako nije trebalo jer je tezina premala", 0, instance.counter);
+			assertTrue("For the argument 40.0, which is bellow the threshold, the method does not output the text 'ERROR'", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertEquals("For the argument 40.0, the counter is increased, although the value is bellow the threshold", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -88,7 +87,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_insertArrayFull() {
+	public void method_insertArrayFull() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(110.5);
@@ -113,9 +112,9 @@ public class TeamMemberWeightsTest {
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("Za pokusaj unosa kad je niz vec pun NE ispisuje se rec ERROR na ekranu", ispis.trim().equalsIgnoreCase("ERROR"));
-			assertEquals("Ipak je povecan counter iako nije trebalo jer je niz pun", 5, instance.counter);
-			assertNotEquals("Ipak je uneta tezina iako je niz pun", 99.9, instance.weights[4], 0.001);
+			assertTrue("When the array is full and a new element is added, the method should print ERROR to the console", ispis.trim().toUpperCase().contains("ERROR"));
+			assertEquals("When the array is full and a new element is added, the counter is increased, but should not have been", 5, instance.counter);
+			assertNotEquals("When the array is full and a new element is added, it is added as the last element, but should not have been", 99.9, instance.weights[4], 0.001);
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -123,7 +122,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_print() {
+	public void method_print() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 
@@ -147,7 +146,7 @@ public class TeamMemberWeightsTest {
 
 			String s = "110.5" + System.lineSeparator() + "82.3" + System.lineSeparator();
 
-			assertEquals("Za unete tezine 110.5 i 82.3 NE ispisuju se te tezine na ekranu", s.trim(), ispis.trim());
+			assertEquals("When two elements are added to the array, 110.5 and 82.3 respectivelly, those elements are not printed to the console", s.trim(), ispis.trim());
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
@@ -155,37 +154,37 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_findLightest() {
+	public void method_findLightest() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
 		instance.insert(182.3);
 		
-		assertEquals("Za uneti niz tezina {110.5, 82.3, 50.0, 182.3}, metoda kao minimum ne vraca 50.0",50.0, instance.findLightest(), 0.001);
+		assertEquals("After four elements are added to the array, 110.5, 82.3, 50.0, 182.3, the method does not return the value 50.0 as minimum",50.0, instance.findLightest(), 0.001);
 	}
 	
 	@Test(timeout = 2000)
-	public void metoda_findWeightTrue() {
+	public void method_findWeightTrue() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
 		instance.insert(182.3);
 		
-		assertEquals("Za uneti niz tezina {110.5, 82.3, 50.0, 182.3}, metoda ne pronalazi 50.0 u nizu",true, instance.findWeight(50.0));
+		assertEquals("After four elements are added to the array, 110.5, 82.3, 50.0, 182.3, the method cannot find the element 50.0 in the array",true, instance.findWeight(50.0));
 	}
 	
 	@Test(timeout = 2000)
-	public void metoda_findWeightFalse() {
+	public void method_findWeightFalse() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
 		instance.insert(182.3);
 		
-		assertEquals("Za uneti niz tezina {110.5, 82.3, 50.0, 182.3}, metoda pronalazi 112.3 u nizu a ne bi trebalo",false, instance.findWeight(112.3));
+		assertEquals("After four elements are added to the array, the method finds an element 112.3 which is not present in the array",false, instance.findWeight(112.3));
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_printPercents() {
+	public void method_printPercents() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -211,12 +210,11 @@ public class TeamMemberWeightsTest {
 
 			String s = "Lightweight:1" + System.lineSeparator() + "Middleweight:1" + System.lineSeparator() + "Heavyweight:2" + System.lineSeparator();
 
-			assertEquals("Za unete tezine 110.5 i 82.3 NE ispisuju se te tezine na ekranu", s.trim(), ispis.trim());
+			assertEquals("After two elements are added to the array, 110.5 and 82.3, those elements are not printed to the output", s.trim(), ispis.trim());
 		} catch (Exception e) {
 			System.setOut(pom);
 			e.printStackTrace();
 		}
-		
 	}
 
 }

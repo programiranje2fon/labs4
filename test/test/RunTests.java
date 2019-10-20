@@ -10,6 +10,9 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
+import p1.TeamMemberWeightsTest;
+import p2.TeamMemberHeightsTest;
+
 /**
  * This class executes all tests and prints out the report.
  * 
@@ -17,8 +20,8 @@ import org.junit.runner.notification.Failure;
 public class RunTests {
 
 	public static void main(String[] args) {
-		runTestsForClass(p1.TeamMemberWeightsTest.class);
-		runTestsForClass(p2.TeamMemberHeightsTest.class);
+		runTestsForClass(TeamMemberWeightsTest.class);
+		runTestsForClass(TeamMemberHeightsTest.class);
 	}
 
 	/**
@@ -35,20 +38,19 @@ public class RunTests {
 		int failureCount = r.getFailureCount();
 		int successfulCount = totalCount - failureCount;
 		String className = c.getName().substring(0, c.getName().length() - 4); // remove last 4 characters "Test"
-		//className = className.substring(5);		// remove package "test." from the name
 
 		if (r.wasSuccessful()) {
 			System.out.println("------------------------------------------------");
-			System.out.format("TEST KLASA: %s %n%n", className);
-			System.out.format("Pokrenuto: %-5d Uspešno: %-5d Neuspešno: %-5d %n%n", totalCount, successfulCount,
+			System.out.format("TEST CLASS: %s %n%n", className);
+			System.out.format("Run: %-5d Passed: %-5d Failed: %-5d %n%n", totalCount, successfulCount,
 					failureCount);
-			System.out.println("\tSvi testovi su uspešno prošli!");
+			System.out.println("\tAll tests passed!");
 			System.out.println();
 			System.out.flush();
 		} else {
 			System.err.println("------------------------------------------------");
-			System.err.format("TEST KLASA: %s %n%n", className);
-			System.err.format("Pokrenuto: %-5d Uspešno: %-5d Neuspešno: %-5d %n%n", totalCount, successfulCount,
+			System.err.format("TEST CLASS: %s %n%n", className);
+			System.err.format("Run: %-5d Passed: %-5d Failed: %-5d %n%n", totalCount, successfulCount,
 					failureCount);
 
 			// print the test summary only if there are no missing classes,
@@ -99,21 +101,21 @@ public class RunTests {
 				// print the method stats
 				if (!testTypeMethodMap.isEmpty()) {
 					for (TestTypes testType : testTypeMethodMap.keySet()) {
-						System.err.println("Testovi za " + testType.pluralDative + ":");
+						System.err.println("Testing " + testType.pluralDative + ":");
 
 						Map<String, int[]> methodsMap = testTypeMethodMap.get(testType);
 
 						for (String methodName : methodsMap.keySet()) {
 							int[] methodStats = methodsMap.get(methodName);
 
-							System.err.printf("\t %-20s %s%n", methodName, methodStats[1] == 0 ? "OK" : "Neuspešno: " + methodStats[1]);
+							System.err.printf("\t %-20s %s%n", methodName, methodStats[1] == 0 ? "OK" : "Failed: " + methodStats[1]);
 						}
 						System.err.println();
 					}
 				}
 			}
 
-			System.err.println("Spisak NEUSPEŠNIH testova:\n");
+			System.err.println("List of FAILED tests:\n");
 			int i = 1;
 
 			for (Failure failure : r.getFailures()) {
@@ -121,16 +123,16 @@ public class RunTests {
 
 				if (ex instanceof NoClassDefFoundError) {
 					System.err.format(
-							"%s. U projektu ne postoji klasa %s %n \t (proverite naziv klase i naziv paketa) %n%n", i++,
+							"%s. There is no class %s %n \t (check class name and package name) %n%n", i++,
 							className);
 				} else if (ex instanceof NoSuchFieldError) {
-					System.err.format("%s. U projektu ne postoji atribut %s %n\t (proverite tip i naziv atributa) %n%n",
+					System.err.format("%s. There is no attribute %s %n \t (check attribute type and name) %n%n",
 							i++, ex.getMessage());
 				} else if (ex instanceof NoSuchMethodError) {
 					String methodName = failure.getDescription().getMethodName().split("_")[1];
 
 					System.err.format(
-							"%s. U klasi %s ne postoji metoda %s %n\t (proverite naziv metode, povratni tip, tipove i redosled parametara) %n%n",
+							"%s. In class %s there is no method %s %n\t (check method name, return type, argument types and their order) %n%n",
 							i++, className, methodName);
 				} else {
 					String[] methodNameElements = failure.getDescription().getMethodName().split("_");
@@ -144,7 +146,7 @@ public class RunTests {
 					TestTypes testType = Arrays.stream(TestTypes.values())
 							.filter(tt -> tt.namePrefix.equals(methodNameElements[0])).findAny().get();
 
-					System.err.format("%s. Test %sza %s %s: %n \t%s %n%n", i++,
+					System.err.format("%s. Test %sfor the %s %s: %n \t%s %n%n", i++,
 							testVariantName != null ? testVariantName + " " : "", testType.vocative, methodName,
 							failure.getMessage());
 				}
@@ -191,12 +193,12 @@ public class RunTests {
 	 * 
 	 */
 	private enum TestTypes {
-		CLASS("klasa", "klasu", "klasu"), 
-		ATTRIBUTE("atribut", "atribute", "atribut"), 
-		CONSTANT("konstanta", "konstante", "konstantu"), 
-		ENUM("enum", "nabrojive tipove", "nabrojiv tip"), 
-		CONSTRUCTOR("konstruktor", "konstruktore", "konstruktor"), 
-		METHOD("metoda", "metode", "metodu");
+		CLASS("class", "classes", "class"), 
+		ATTRIBUTE("attribute", "attributes", "attribute"), 
+		CONSTANT("constant", "constants", "constant"), 
+		ENUM("enum", "enums", "enum"), 
+		CONSTRUCTOR("constructor", "constructors", "constructor"), 
+		METHOD("method", "methods", "method");
 
 		private String namePrefix;
 		private String pluralDative;
