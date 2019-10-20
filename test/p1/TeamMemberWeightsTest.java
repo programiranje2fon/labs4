@@ -31,22 +31,22 @@ public class TeamMemberWeightsTest {
 		
 		assertEquals("Array length is not correct", 20, instance.weights.length);
 		
-		for(double tezina: instance.weights)
+		for (double tezina : instance.weights)
 			assertEquals("Array element is not initialized to -1", -1, tezina, 0.001);
 	}
 
 	@Test(timeout = 2000)
-	public void constructor_TeamMemberWeightsInt() {
+	public void constructor_TeamMemberWeights_int() {
 		instance = new TeamMemberWeights(5);
 		
 		assertEquals("If argument value is 5, the array length is not 5", 5, instance.weights.length);
 		
-		for(double tezina: instance.weights)
+		for (double tezina : instance.weights)
 			assertEquals("Array element is not initialized to -1", -1, tezina, 0.001);
 	}
 
 	@Test(timeout = 2000)
-	public void metoda_insert() {
+	public void method_insert() {
 		instance.insert(100.5);
 		instance.insert(52.3);
 		
@@ -59,7 +59,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_insertTooLight() {
+	public void method_insert_lower() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -87,7 +87,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_insertArrayFull() {
+	public void method_insert_arrayFull() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(110.5);
@@ -164,7 +164,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_findWeightTrue() {
+	public void method_findWeight_true() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -174,7 +174,7 @@ public class TeamMemberWeightsTest {
 	}
 	
 	@Test(timeout = 2000)
-	public void method_findWeightFalse() {
+	public void method_findWeight_false() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
@@ -184,7 +184,7 @@ public class TeamMemberWeightsTest {
 	}
 
 	@Test(timeout = 2000)
-	public void method_printPercents() {
+	public void method_printCategories() {
 		instance.insert(110.5);
 		instance.insert(82.3);
 		instance.insert(50.0);
