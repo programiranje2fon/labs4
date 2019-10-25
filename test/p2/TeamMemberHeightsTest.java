@@ -72,12 +72,12 @@ public class TeamMemberHeightsTest {
 			System.out.flush();
 
 			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
+			String output = buffer.toString();
 
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("For the argument 159, which is bellow the threshold, the method does not output the text 'ERROR'", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertTrue("For the argument 159, which is bellow the threshold, the method does not output the text 'ERROR'", output.toLowerCase().contains("ERROR".toLowerCase()));
 			assertEquals("For the argument 159, the counter is increased, although the value is bellow the threshold", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
@@ -100,12 +100,12 @@ public class TeamMemberHeightsTest {
 			System.out.flush();
 
 			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
+			String output = buffer.toString();
 
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("For the argument 251, which is above the threshold, the method does not output the text 'ERROR'", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertTrue("For the argument 251, which is above the threshold, the method does not output the text 'ERROR'", output.toLowerCase().contains("ERROR".toLowerCase()));
 			assertEquals("For the argument 251, the counter is increased, although the value is above the threshold", 0, instance.counter);
 		} catch (Exception e) {
 			System.setOut(pom);
@@ -134,12 +134,12 @@ public class TeamMemberHeightsTest {
 			System.out.flush();
 
 			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
+			String output = buffer.toString();
 
 			// Vracanje System.out na staro
 			System.setOut(pom);
 
-			assertTrue("When the array is full and a new element is added, the method should print ERROR to the console", ispis.trim().equalsIgnoreCase("ERROR"));
+			assertTrue("When the array is full and a new element is added, the method should print ERROR to the console", output.toLowerCase().contains("ERROR".toLowerCase()));
 			assertEquals("When the array is full and a new element is added, the counter is increased, but should not have been", 5, instance.counter);
 			assertNotEquals("When the array is full and a new element is added, it is added as the last element, but should not have been", 199, instance.heights[4]);
 		} catch (Exception e) {
